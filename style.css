@@ -5,17 +5,18 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* ---------------- BACKGROUND ---------------- */
+/* ================= BACKGROUND ================= */
 
 body {
-  min-height: 100vh;
-  overflow: hidden;
+  min-height: 100svh; /* mobile-safe viewport */
+  overflow-x: hidden;
 }
 
-/* Background image */
+/* Background image layer */
 .bg {
   position: fixed;
   inset: 0;
+  min-height: 100svh;
   background: url("img/bg.avif") center / cover no-repeat;
   z-index: -2;
 }
@@ -29,23 +30,24 @@ body {
   background: rgba(0, 0, 0, 0.25);
 }
 
-/* ---------------- APP LAYER ---------------- */
+/* ================= APP LAYER ================= */
 
 .app {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  padding: 20px 0;
 }
 
-/* ---------------- CARD ---------------- */
+/* ================= CARD ================= */
 
 .card {
   width: 90%;
   max-width: 420px;
-  margin: 60px auto;
+  margin: 40px auto;
 
   background: linear-gradient(
     135deg,
@@ -61,31 +63,37 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
 }
 
-/* ---------------- SEARCH ---------------- */
+/* ================= SEARCH ================= */
 
 .search {
   display: flex;
-  gap: 12px;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
 }
 
 .search input {
   flex: 1;
-  height: 50px;
+  min-width: 0; /* CRITICAL for mobile */
+  height: 48px;
   border-radius: 30px;
   border: none;
   outline: none;
   padding: 0 20px;
   font-size: 16px;
   background: rgba(234, 242, 255, 0.95);
+  color: #333;
 }
 
 .search button {
-  width: 50px;
-  height: 50px;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: none;
   background: rgba(234, 242, 255, 0.95);
   cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,7 +103,7 @@ body {
   width: 18px;
 }
 
-/* ---------------- WEATHER ---------------- */
+/* ================= WEATHER ================= */
 
 .weather {
   display: none;
@@ -117,7 +125,7 @@ body {
   margin-top: -5px;
 }
 
-/* ---------------- DETAILS ---------------- */
+/* ================= DETAILS ================= */
 
 .details {
   display: flex;
@@ -141,7 +149,7 @@ body {
   font-size: 18px;
 }
 
-/* ---------------- ERROR ---------------- */
+/* ================= ERROR ================= */
 
 .error {
   display: none;
@@ -151,13 +159,12 @@ body {
   color: #ffb4b4;
 }
 
-/* ---------------- RESPONSIVE ---------------- */
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 480px) {
-  .details {
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
+  .card {
+    margin: 30px auto;
+    padding: 25px 20px;
   }
 
   .weather h1 {
@@ -166,5 +173,11 @@ body {
 
   .weather h2 {
     font-size: 26px;
+  }
+
+  .details {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
   }
 }
